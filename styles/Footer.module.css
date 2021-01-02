@@ -1,0 +1,45 @@
+.footer {
+  background: var(--very-dark-violet);
+  text-align: center;
+  padding: 25px 0;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .footerGrid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.footer h4{
+  color: white;
+}
+
+.footer h2{
+  color: white;
+  margin: 0;
+  padding: 20px 5px 10px 5px;
+  margin-bottom: 10px;
+}
+
+.footer p {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.footer p:hover {
+  color: var(--cyan);
+}
+
+.socialMedia {
+  margin-top: 5px;
+}
+
+.socialMedia img {
+  margin: 20px 10px;
+  cursor: pointer;
+}

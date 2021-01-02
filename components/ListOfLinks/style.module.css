@@ -1,0 +1,115 @@
+.listOfLinks {
+  margin: 0 auto;
+  width: 100%;
+  padding: 30px 0px;
+}
+
+@media (min-width: 768px) {
+  .listOfLinks {
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr;
+  }
+}
+
+.link {
+  padding: 1px 5px;
+  width: 100%;
+  text-align: left;
+  color: var(--very-dark-blue);
+  background: white;
+  border-radius: 8px;
+  margin: 10px 0px;
+  padding: 0px 17px;
+}
+
+@media (min-width: 768px) {
+  .link {
+    display: grid;
+    grid-template-columns: 70% 30%;
+  }
+}
+
+@media (min-width: 992px) {
+  .link {
+    grid-template-columns: 45% 55%;
+    place-items: center;
+  }
+}
+
+.originalLink {
+  max-width: 100%;
+  padding: 2px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid var(--grayish-violet);
+  padding: 15px 0px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.originalLink h4 {
+  margin: 0;
+  font-size: 15px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .originalLink {
+    border: 0;
+    width: 100%;
+  }
+}
+
+.shortLink {
+  width: 100%;
+  padding: 2px;
+  margin-bottom: 5px;
+  padding: 15px 0px;
+  text-align: center;
+}
+
+.shortLink h4 {
+  text-align: left;
+  margin: 0;
+  margin-bottom: 17px;
+  color: var(--cyan);
+}
+
+@media (min-width: 768px) {
+  .shortLink {
+    display: inline-block;
+    text-align: center;
+  }
+  .shortLink h4 {
+    text-align: center;
+  }
+  .shortLink button {
+    text-align: center;
+  }
+}
+
+@media (min-width: 992px) {
+  .shortLink {
+    display: grid;
+    grid-template-columns: 65% 35%;
+  }
+  .shortLink h4 {
+    margin: auto !important;
+  }
+  .button {
+    font-size: small;
+  }
+}
+
+@media (min-width: 992px) {
+  .link {
+    grid-template-columns: 65% 35%;
+    place-items: center;
+  }
+  .shortLink {
+    display: grid;
+    grid-template-columns: 60% 40%;
+  }
+}
+
+

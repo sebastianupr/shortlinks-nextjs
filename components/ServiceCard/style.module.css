@@ -1,0 +1,39 @@
+.card {
+  width: 310px;
+  padding: 20px;
+  text-align: center;
+  background-color: white;
+  margin: 5px;
+  margin-top: 65px;
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.cardIcon {
+  width: 80px;
+  margin: 0 auto;
+  background: var(--dark-violet);
+  padding: 18px;
+  margin-top: -60px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.cardIcon img {
+  width: 40px;
+}
+
+.cardText{
+  padding: 2px;
+  margin-top: 15px;
+}
+
+@media (min-width: 1080px) {
+  .card {
+    text-align: left;
+  }
+  .cardIcon {
+    margin: -60px 0 0 0;
+  }
+}

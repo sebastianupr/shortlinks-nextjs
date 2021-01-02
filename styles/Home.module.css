@@ -1,0 +1,53 @@
+.container {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.home {
+  min-height: 70vh;
+  margin-top: 10px;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 30px;
+  place-items: center;
+}
+
+@media (min-width: 768px) {
+  .home {
+    grid-template-columns: 60% 40%;
+  }
+  .home div:nth-of-type(1) {
+    order: 2;
+  }
+  .home div:nth-of-type(2) {
+    order: 1;
+    text-align: left;
+  }
+  .title {
+    font-size: 80px;
+    margin: 3px 0;
+    letter-spacing: -5px;
+  }
+}
+
+.ilustationWorkingContainer {
+  margin-bottom: 15px;
+}
+
+.ilustationWorking {
+  width: 100%;
+}
+
+.textHome {
+  margin-bottom: 25px;
+}
+
+.listOfLinks {
+  background: #f0f1f6;
+  padding-top: 35px;
+  margin-top: -50px;
+}

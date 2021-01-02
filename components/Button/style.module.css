@@ -1,0 +1,29 @@
+.button {
+  display: inline-flex;
+}
+.button button {
+  color: white;
+  font-size: 18px;
+  border: 0;
+  border-radius: 25px;
+  background-color: var(--cyan);
+  text-align: center;
+  margin: 0 auto;
+  margin: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button button:hover {
+  background-color: hsl(180, 66%, 72%);
+}
+
+.buttonBig {
+  width: 200px;
+  padding: 15px 5px;
+}
+
+.buttonSmall {
+  width: 150px;
+  padding: 8px 2.5px;
+}
