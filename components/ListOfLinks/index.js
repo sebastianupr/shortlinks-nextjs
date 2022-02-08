@@ -1,7 +1,8 @@
 import { useEffect, useContext, useState } from 'react'
-import style from './style.module.css'
-import ButtonForm from 'components/ButtonForm'
 import Context from 'Context/Context'
+import ListButton from 'components/ListButton'
+
+import style from './style.module.css'
 
 export default function ListOfLinks () {
   const [copied, setCopied] = useState('')
@@ -14,7 +15,7 @@ export default function ListOfLinks () {
     if (localLinks) setShorterLinks(localLinks)
   }, [])
 
-  const handleClick = shortLink => {
+  const handleClick = (shortLink) => () => {
     if (shortLink) {
       const aux = document.createElement('input')
       aux.setAttribute('value', document.getElementById(shortLink).innerHTML)
@@ -26,38 +27,26 @@ export default function ListOfLinks () {
     }
   }
 
-  const styleButton = style.button
-
   return (
     <div className={style.listOfLinks}>
-      {shorterLinks.map(link => {
+      {shorterLinks.map((link) => {
         return (
           <div key={link.code} className={style.link}>
             <div className={style.originalLink}>
               <h4>{link.original_link}</h4>
             </div>
-            <div className={style.shortLink} >
-              <h4
-                id={link.short_link}
-              >
-                {link.short_link}
-              </h4>
+            <div className={style.shortLink}>
+              <h4 id={link.short_link}>{link.short_link}</h4>
+
               {copied === link.short_link
-                ? <ButtonForm
-                  buttonlist="true"
-                  background="dark"
-                  customstyle={styleButton}
-                >
-                  Copied!
-                </ButtonForm>
-                : <ButtonForm
-                  buttonlist="true"
-                  onClick={() => handleClick(link.short_link)}
-                  customstyle={styleButton}
-                >
+                ? (
+                <ListButton theme="dark">Copied!</ListButton>
+                  )
+                : (
+                <ListButton onClick={handleClick(link.short_link)}>
                   Copy
-                </ButtonForm>
-              }
+                </ListButton>
+                  )}
             </div>
           </div>
         )

@@ -1,5 +1,5 @@
-import style from './style.module.css'
 import Button from 'components/Button'
+import style from './style.module.css'
 
 export default function MobileMenu () {
   return (

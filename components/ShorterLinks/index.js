@@ -1,68 +1,87 @@
-import { useState, useContext } from 'react'
-import style from './style.module.css'
-import ButtonForm from 'components/ButtonForm'
-import getShorterLink from 'services/getShorterLink'
+import { useContext, useEffect } from 'react'
+import { Formik, Field, ErrorMessage } from 'formik'
+import classNames from 'classnames'
+
 import Context from 'Context/Context'
 
+import FormButton from 'components/FormButton'
+import Spinner from 'components/Spinner'
+
+import useAddShorterLink from 'swrHooks/useAddShorterLink'
+
+import { shorterLinkSchema } from 'schemas/shorterLinks'
+
+import style from './style.module.css'
+
 export default function ShorterLinks () {
+  const { shorterLinkData, mutate, loading } = useAddShorterLink()
+
   const state = useContext(Context)
-  const { shorterLinks, setShorterLinks } = state
+  const { setShorterLinks } = state
 
-  const [error, setError] = useState(false)
-  const [link, setLink] = useState('')
-  const handleChange = evt => {
-    setError(false)
-    setLink(evt.target.value)
+  const handleFormikSubmit = async (values, { resetForm }) => {
+    mutate(values.link).then(() => {
+      resetForm()
+    })
   }
 
-  const cleanForm = () => setLink('')
-
-  const setLinks = (link) => {
-    const links = [...shorterLinks, link]
-    const linksJson = JSON.stringify(links)
-    localStorage.setItem('links', linksJson)
-    setShorterLinks(links)
-    cleanForm()
-  }
-
-  const handleSubmit = async evt => {
-    evt.preventDefault()
-    const errorMessage = 'There was an error, verify that the link is correct'
-
-    if (link.length > 4) {
-      const data = await getShorterLink(link)
-      if (data) setLinks(data)
-      else alert(errorMessage)
-    } else {
-      setError(true)
+  useEffect(() => {
+    if (shorterLinkData) {
+      setShorterLinks((currentLinks) => {
+        return currentLinks
+          .filter((link) => link.code !== shorterLinkData.code)
+          .concat([shorterLinkData])
+      })
     }
-  }
-
-  const styleButton = style.button
+  }, [shorterLinkData])
 
   return (
     <>
-      <div className={style.shorterLinksForm}>
-        <form onSubmit={handleSubmit} className={style.gridForm}>
-          <div className={` ${style.input} ${error ? style.error : ''}`}>
-            <label>
-              <input
-                type="text"
-                placeholder="Shorten a link here..."
-                value={link}
-                onChange={handleChange}
-              />
-            </label>
-            {error && <p>Please add a link</p>}
+      <Spinner show={loading} />
+
+      <Formik
+        initialValues={{ link: '' }}
+        initialTouched={{ link: false }}
+        validationSchema={shorterLinkSchema}
+        onSubmit={handleFormikSubmit}
+      >
+        {({ handleSubmit }) => (
+          <div className={style.shorterLinksForm}>
+            <form onSubmit={handleSubmit} className={style.gridForm}>
+              <Field name="link">
+                {({ field, meta }) => (
+                  <div
+                    className={classNames(
+                      style.input,
+                      meta.touched && meta.error && style.error
+                    )}
+                  >
+                    <label htmlFor="link">
+                      <input
+                        type="text"
+                        placeholder="Shorten a link here..."
+                        {...field}
+                      />
+                    </label>
+                    <ErrorMessage name="link">
+                      {(msg) => <p>{msg}</p>}
+                    </ErrorMessage>
+                  </div>
+                )}
+              </Field>
+
+              <div className={style.buttonMobile}>
+                <FormButton type="submit">Shorten It!</FormButton>
+              </div>
+              <div className={style.buttonDesktop}>
+                <FormButton className={style.button} type="submit">
+                  Shorten It!
+                </FormButton>
+              </div>
+            </form>
           </div>
-          <div className={style.buttonMobile}>
-            <ButtonForm>Shorten It!</ButtonForm>
-          </div>
-          <div className={style.buttonDesktop}>
-            <ButtonForm customstyle={styleButton}>Shorten It!</ButtonForm>
-          </div>
-        </form>
-      </div>
+        )}
+      </Formik>
     </>
   )
 }

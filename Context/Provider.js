@@ -1,6 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+
 import Context from './Context'
+
+import { getLinks } from 'services/storage/links'
 
 export default function Provider ({ children }) {
   const { Provider } = Context
@@ -11,9 +14,11 @@ export default function Provider ({ children }) {
     setShorterLinks
   }
 
-  return <Provider value={providerState}>
-    {children}
-  </Provider>
+  useEffect(() => {
+    setShorterLinks(getLinks())
+  }, [])
+
+  return <Provider value={providerState}>{children}</Provider>
 }
 
 Provider.propTypes = {
