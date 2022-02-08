@@ -6,7 +6,7 @@ import Context from 'Context/Context'
 
 export default function ShorterLinks () {
   const state = useContext(Context)
-  const { shortersLinks, setShortesLinks } = state
+  const { shorterLinks, setShorterLinks } = state
 
   const [error, setError] = useState(false)
   const [link, setLink] = useState('')
@@ -18,10 +18,10 @@ export default function ShorterLinks () {
   const cleanForm = () => setLink('')
 
   const setLinks = (link) => {
-    const links = [...shortersLinks, link]
+    const links = [...shorterLinks, link]
     const linksJson = JSON.stringify(links)
     localStorage.setItem('links', linksJson)
-    setShortesLinks(links)
+    setShorterLinks(links)
     cleanForm()
   }
 
