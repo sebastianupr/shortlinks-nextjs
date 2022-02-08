@@ -1,29 +1,30 @@
 import Head from 'next/head'
+
 import Header from 'components/Header'
-import styles from 'styles/Home.module.css'
-import servicesStyles from 'styles/Services.module.css'
-import cardServices from 'json/cardServices.json'
-import boostStyles from 'styles/Boost.module.css'
-import footerStyles from 'styles/Footer.module.css'
-import socialMedia from 'json/socialMedia.json'
 import Button from 'components/Button'
 import ServicesCard from 'components/ServiceCard'
-import ShorterLinks from 'components/ShorterLinks/index'
-import ListOfLinks from 'components/ListOfLinks/index'
+import ShorterLinks from 'components/ShorterLinks'
+import ListOfLinks from 'components/ListOfLinks'
+
+import cardServices from 'json/cardServices.json'
+import socialMedia from 'json/socialMedia.json'
+
+import styles from 'styles/Home.module.css'
+import servicesStyles from 'styles/Services.module.css'
+import boostStyles from 'styles/Boost.module.css'
+import footerStyles from 'styles/Footer.module.css'
 
 export default function Home () {
   return (
-    <div>
+    <>
       <Head>
-        <title>Shorter Links</title>
+        <title>Short links App - Sebastianupr</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
 
-      <div className="container">
-        {/* Header */}
+      <main className="container">
         <Header />
 
-        {/* Home */}
         <section className={styles.home}>
           <div className={styles.ilustationWorkingContainer}>
             <img src="/illustration-working.svg" className={styles.ilustationWorking} />
@@ -37,16 +38,15 @@ export default function Home () {
           </div>
         </section>
 
-        {/* Shorter links */}
         <ShorterLinks/>
-      </div>
+      </main>
+
       <div className={styles.listOfLinks}>
         <div className="container">
           <ListOfLinks/>
         </div>
       </div>
 
-      {/* Services */}
       <section className={servicesStyles.services}>
         <div className="container">
           <div className={servicesStyles.text}>
@@ -63,13 +63,11 @@ export default function Home () {
         </div>
       </section>
 
-      {/* Boost */}
       <section className={boostStyles.boost}>
         <h2>Boost your links today</h2>
         <Button>Get Stared</Button>
       </section>
 
-      {/* Footer */}
       <footer className={footerStyles.footer}>
         <div className="container">
           <div className={footerStyles.footerGrid}>
@@ -101,8 +99,8 @@ export default function Home () {
             {socialMedia.map(Rs => <img key={Rs.name} src={Rs.icon} alt={Rs.name} />)}
           </div>
           </div>
-         </div>
+        </div>
       </footer>
-    </div>
+    </>
   )
 }

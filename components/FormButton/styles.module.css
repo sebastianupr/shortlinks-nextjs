@@ -1,4 +1,12 @@
-.button {
+.buttonLight {
+  background: var(--cyan);
+}
+
+.buttonDark {
+  background: var(--dark-violet);
+}
+
+.formButton {
   border: 0;
   padding: 20px 40px;
   color: white;
@@ -9,26 +17,6 @@
   transition: all 0.3s ease;
 }
 
-.buttonLight {
-  background: var(--cyan);
-}
-
-.buttonDark {
-  background: var(--dark-violet);
-}
-
-.buttonList {
-  border: 0;
-  padding: 10px 35px;
-  width: 100%;
-  color: white;
-  border-radius: 9px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 20px;
-  transition: all 0.3s ease;
-}
-
-.button:hover {
+.formButton:hover {
   background-color: hsl(180, 66%, 72%);
 }

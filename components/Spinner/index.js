@@ -1,10 +1,20 @@
-import './style.css'
+import PropTypes from 'prop-types'
 
-export default function Spinner () {
+import styles from './styles.module.css'
+
+export default function Spinner ({ show = false }) {
+  if (!show) return null
+
   return (
-    <div className="spinner">
-      <div className="double-bounce1"></div>
-      <div className="double-bounce2"></div>
+    <div className={styles.spinnerContainer}>
+      <div className={styles.spinner}>
+        <div className={styles.doubleBounce1}></div>
+        <div className={styles.doubleBounce2}></div>
+      </div>
     </div>
   )
+}
+
+Spinner.propTypes = {
+  show: PropTypes.bool.isRequired
 }
