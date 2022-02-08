@@ -7,11 +7,11 @@ export default function ListOfLinks () {
   const [copied, setCopied] = useState('')
 
   const state = useContext(Context)
-  const { shortersLinks, setShortesLinks } = state
+  const { shorterLinks = [], setShorterLinks } = state
 
   useEffect(() => {
     const localLinks = JSON.parse(localStorage.getItem('links'))
-    if (localLinks) setShortesLinks(localLinks)
+    if (localLinks) setShorterLinks(localLinks)
   }, [])
 
   const handleClick = shortLink => {
@@ -30,7 +30,7 @@ export default function ListOfLinks () {
 
   return (
     <div className={style.listOfLinks}>
-      {shortersLinks && shortersLinks.map(link => {
+      {shorterLinks.map(link => {
         return (
           <div key={link.code} className={style.link}>
             <div className={style.originalLink}>
