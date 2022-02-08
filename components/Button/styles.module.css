@@ -1,7 +1,8 @@
-.button {
+.buttonContainer {
   display: inline-flex;
 }
-.button button {
+
+.button {
   color: white;
   font-size: 18px;
   border: 0;
@@ -14,7 +15,7 @@
   transition: all 0.3s ease;
 }
 
-.button button:hover {
+.button:hover {
   background-color: hsl(180, 66%, 72%);
 }
 

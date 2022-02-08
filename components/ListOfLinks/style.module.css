@@ -96,9 +96,6 @@
   .shortLink h4 {
     margin: auto !important;
   }
-  .button {
-    font-size: small;
-  }
 }
 
 @media (min-width: 992px) {
